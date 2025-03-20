@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -24,10 +25,11 @@ public class GameService {
     private final RestTemplate restTemplate = new RestTemplate();
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public String getGames() {
-        String url = apiUrl + "/games?key=" + apiKey + "&page_size=30"; // Set page_size to 30
+    public String getGames(@RequestParam(defaultValue = "1") int page) {
+        String url = apiUrl + "/games?key=" + apiKey + "&page_size=30&page=" + page;
         return restTemplate.getForObject(url, String.class);
     }
+
 
     public List<Game> searchGames(String query) {
         String url = apiUrl + "/games?key=" + apiKey + "&search=" + query + "&page_size=10"; // Limita los resultados
