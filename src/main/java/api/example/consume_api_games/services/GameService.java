@@ -25,7 +25,7 @@ public class GameService {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     public String getGames() {
-        String url = apiUrl + "/games?key=" + apiKey;
+        String url = apiUrl + "/games?key=" + apiKey + "&page_size=30"; // Set page_size to 30
         return restTemplate.getForObject(url, String.class);
     }
 
