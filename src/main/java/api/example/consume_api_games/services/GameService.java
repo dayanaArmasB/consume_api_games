@@ -25,9 +25,16 @@ public class GameService {
     private final RestTemplate restTemplate = new RestTemplate();
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public String getGames(@RequestParam(defaultValue = "1") int page) {
-        String url = apiUrl + "/games?key=" + apiKey + "&page_size=30&page=" + page;
-        return restTemplate.getForObject(url, String.class);
+    public String getGames(
+    @RequestParam(defaultValue = "1") int page,
+    @RequestParam(required = false) String genres) {
+    String url = apiUrl + "/games?key=" + apiKey + "&page_size=30&page=" + page;
+
+    if (genres != null && !genres.isEmpty()) {
+        url += "&genres=" + genres;
+    }
+
+    return restTemplate.getForObject(url, String.class);
     }
 
 

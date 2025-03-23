@@ -26,8 +26,11 @@ public class GameController {
     }
 
     @GetMapping("/games")
-    public String getGames(@RequestParam(defaultValue = "1") int page) {
-        return gameService.getGames(page);
+    public String getGames(
+        @RequestParam(defaultValue = "1") int page,
+        @RequestParam(required = false) String genres
+    ) {
+        return gameService.getGames(page, genres);
     }
 
     @GetMapping("/search")
