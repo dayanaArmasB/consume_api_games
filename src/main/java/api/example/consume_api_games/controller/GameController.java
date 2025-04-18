@@ -1,8 +1,6 @@
 package api.example.consume_api_games.controller;
 
 import java.util.List;
-import java.util.Map;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,4 +45,10 @@ public class GameController {
     public String getGameDetails(@PathVariable int id) {
         return gameService.getGameDetails(id);
     }
+
+    @GetMapping("/genres")
+    public String getGenres() {
+    return gameService.getGenres();
+}
+
 }

@@ -93,4 +93,9 @@ public class GameService {
         String url = apiUrl + "/games/" + id + "?key=" + apiKey;
         return restTemplate.getForObject(url, String.class);
     }
+
+    public String getGenres() {
+        String url = apiUrl + "/genres?key=" + apiKey;
+        return restTemplate.getForObject(url, String.class);
+    }
 }
